@@ -32,7 +32,7 @@ import { fade } from 'svelte/transition';
                 <h2 class="text-2xl font-bold text-gray-900 mb-2">
                   {author.name}
                 </h2>
-                <p class="text-gray-600 mb-4 line-clamp-3">{author.bio}</p>
+                <p class="text-gray-600 mb-4 line-clamp-3">{@html author.bio}</p>
                 <div class="flex gap-4">
                 </div>
               </div>

@@ -6,7 +6,7 @@ export interface Post {
     category: string;
     image: string;
     slug: string;
-    expand: { author: { name: string } };
+    expand: { author: { name: string, id: string } };
     content: string;
     featured: boolean;
   }

@@ -29,12 +29,18 @@
             </h1>
             
             <div class="flex flex-wrap items-center gap-4 text-gray-200">
-              <div class="flex items-center gap-2">
-                <span class="font-medium">{post.expand?.author?.name}</span>
-              </div>
+              <a href="/authors/{post.expand?.author?.id}">
+                <div class="flex items-center gap-2">
+                  <span class="font-medium">{post.expand?.author?.name}</span>
+                </div>
+              </a>
               <span>•</span>
               <time datetime={post.date}>
-                {post.date}
+                {new Date(post.date).toLocaleDateString('bn-BD', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
               </time>
             </div>
           </div>
@@ -42,7 +48,7 @@
       </div>
     
       <!-- Article Content -->
-      <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8" in:fade={{ delay: 200 }}>
+      <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 divide-y-2" in:fade={{ delay: 200 }}>
         <!-- Description -->
         <div class="mb-12">
           <p class="text-xl leading-relaxed text-gray-700">
@@ -84,6 +90,10 @@
         </div>
       </div>
     </main>
+  {:else}
+    <div class="min-h-screen flex items-center justify-center">
+      <p class="text-2xl font-semibold text-gray-600">কোনো নিবন্ধ পাওয়া যায়নি</p>
+    </div>
   {/if}
     <style>
       :global(.prose) {

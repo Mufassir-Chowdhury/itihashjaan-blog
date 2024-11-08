@@ -10,17 +10,12 @@
       return true;
     });
   
-    // Function to determine if a post should be featured (larger)
-    const isFeaturePost = (index: number) => {
-      // Make every 5th and 7th post larger
-      return index % 5 === 0 || index % 7 === 0;
-    };
   </script>
   
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 auto-rows-auto py-8">
       {#each filteredPosts as post, index (post.slug)}
-        <div class="{isFeaturePost(index) ? 
+        <div class="{post.featured ? 
           'md:col-span-2 md:row-span-2' : 
           'col-span-1 row-span-1'} 
           transition-transform duration-300 hover:scale-[1.02]"

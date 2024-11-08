@@ -96,4 +96,8 @@ import { fade } from 'svelte/transition';
       {/if} -->
     </div>
   </div>
-    {/if}
+    {:else}
+    <div class="min-h-screen flex items-center justify-center">
+      <p class="text-2xl font-semibold text-gray-600">কোনো লেখক পাওয়া যায়নি</p>
+    </div>
+  {/if}

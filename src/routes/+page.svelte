@@ -14,7 +14,7 @@
       <header class="py-16 text-center" in:fade>
         <h1 class="mb-6 text-5xl font-bold text-gray-900">ইতিহাসযান</h1>
         <p class="mx-auto max-w-2xl text-xl text-gray-600">
-          বাংলার ইতিহাস, ঐতিহ্য ও সংস্কৃতির অনলাইন আর্কাইভ
+          ইতিহাস, দর্শন, রাজনীতি, সমাজ, ধর্ম ও সংস্কৃতির পঠন-পাঠন এবং পর্যালচনার একটি বুদ্ধিবৃত্তিক প্রচেষ্টার অংশ
         </p>
       </header>
   

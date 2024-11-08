@@ -13,7 +13,7 @@ export const authorImage = "http://127.0.0.1:8090/api/files/authors";
 export async function getArticles(options: RecordListOptions = {}): Promise<Post[]> {
     try {
         const defaultOptions: RecordListOptions = {
-            sort: '-created',
+            sort: '+created',
             expand: 'author',
             ...options
         };
