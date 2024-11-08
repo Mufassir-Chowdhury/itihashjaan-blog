@@ -1,9 +1,9 @@
 // src/routes/+page.server.ts
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { getAuthors } from '$lib/pocketbase';
 import type { Author } from '$lib/types/author';
 
-export const load: PageServerLoad = async () => {
+export const load: PageLoad = async () => {
   let authors: Author[] = await getAuthors();
 
   return {

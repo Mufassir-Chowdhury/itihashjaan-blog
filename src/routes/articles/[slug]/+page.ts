@@ -1,9 +1,9 @@
 // src/routes/+page.server.ts
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import type { Post } from '$lib/types/post';
 import { getArticleBySlug } from '$lib/pocketbase';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageLoad = async ({ params }) => {
   const post: Post | null = await getArticleBySlug(params.slug);
 
 

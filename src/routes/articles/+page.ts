@@ -1,8 +1,8 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import type { Post } from '$lib/types/post';
 import { getArticles } from '$lib/pocketbase';
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: PageLoad = async ({ url }) => {
     let categories = [
         { name: 'অনুবাদ', slug: 'translation' },
         { name: 'প্রবন্ধ', slug: 'article' },
