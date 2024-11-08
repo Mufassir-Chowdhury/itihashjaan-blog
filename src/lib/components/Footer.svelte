@@ -1,11 +1,6 @@
 <script lang="ts">
 	const currentYear = new Date().getFullYear();
-	let categories = [
-		{ name: 'অনুবাদ', slug: 'translation' },
-		{ name: 'প্রবন্ধ', slug: 'article' },
-		{ name: 'অনুলিখন', slug: 'copywriting' },
-		{ name: 'সম্পাদকীয়', slug: 'editorial' }
-	];
+	export let categories;
 </script>
 
 <footer class="bg-gray-900 text-gray-300">
@@ -14,7 +9,7 @@
 			<!-- Brand -->
 			<div class="mb-8 md:mb-0">
 				<h2 class="text-2xl font-bold text-amber-500">ইতিহাসযান</h2>
-				<p class="mt-4 text-sm">ইতিহাস, দর্শন, রাজনীতি, সমাজ, ধর্ম ও সংস্কৃতির পঠন-পাঠন এবং পর্যালচনার একটি বুদ্ধিবৃত্তিক প্রচেষ্টার অংশ</p>
+				<p class="mt-4 text-sm">সত্ত্বা, বর্তমানতা ও ইতিহাস</p>
 			</div>
 
 			<!-- Quick Links -->
@@ -27,7 +22,7 @@
 					<li>
 						<a href="/articles" class="text-sm hover:text-amber-400">নিবন্ধ সমূহ</a>
 					</li>
-          <li>
+					<li>
 						<a href="/authors" class="text-sm hover:text-amber-400">লেখকসমূহ</a>
 					</li>
 					<li>
@@ -43,11 +38,13 @@
 			<div>
 				<h3 class="text-lg font-semibold text-white">বিভাগ সমূহ</h3>
 				<ul class="mt-4 space-y-2">
-          {#each categories as category}
-            <li>
-              <a href="/articles?category={category.slug}" class="text-sm hover:text-amber-400">{category.name}</a>
-            </li>
-          {/each}
+					{#each categories as category}
+						<li>
+							<a href="/articles?category={category.slug}" class="text-sm hover:text-amber-400"
+								>{category.name}</a
+							>
+						</li>
+					{/each}
 				</ul>
 			</div>
 
@@ -64,7 +61,7 @@
 								d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 							/>
 						</svg>
-						<a href="mailto:contact@itihasjan.com" class="text-sm hover:text-amber-400">
+						<a href="mailto:contact@itihasjaan.com" class="text-sm hover:text-amber-400">
 							contact@itihasjaan.com
 						</a>
 					</li>
@@ -79,7 +76,10 @@
 					&copy; {currentYear} ইতিহাসযান। সর্বস্বত্ব সংরক্ষিত।
 				</p>
 				<div class="flex space-x-6">
-					<a href="#" class="text-gray-400 hover:text-amber-400">
+					<a
+						href="https://www.facebook.com/profile.php?id=61551717886324"
+						class="text-gray-400 hover:text-amber-400"
+					>
 						<span class="sr-only">Facebook</span>
 						<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
 							<path
@@ -87,12 +87,27 @@
 							/>
 						</svg>
 					</a>
-					<a href="#" class="text-gray-400 hover:text-amber-400">
-						<span class="sr-only">Twitter</span>
-						<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-							<path
-								d="M23.95,4.57a10,10,0,0,1-2.82.77,4.96,4.96,0,0,0,2.16-2.72,9.9,9.9,0,0,1-3.12,1.19,4.92,4.92,0,0,0-8.39,4.49A14,14,0,0,1,1.64,3.16,4.92,4.92,0,0,0,3.2,9.72,4.86,4.86,0,0,1,.96,9.11v.06A4.93,4.93,0,0,0,4.88,14a5,5,0,0,1-2.23.09,4.93,4.93,0,0,0,4.6,3.42A9.72,9.72,0,0,1,0,19.74,13.74,13.74,0,0,0,7.55,22a13.93,13.93,0,0,0,14-14c0-.21,0-.42-.01-.63A10,10,0,0,0,24,4.59l-.05-.02Z"
-							/>
+					<a href="https://www.youtube.com/@Itihashjaan" class="text-gray-400 hover:text-amber-400">
+						<span class="sr-only">YouTube</span>
+						<svg
+							height="24px"
+							width="24px"
+							fill="currentColor"
+							version="1.1"
+							id="Layer_1"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							viewBox="0 0 461.001 461.001"
+							xml:space="preserve"
+						>
+							<g>
+								<path
+									d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728
+		c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137
+		C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607
+		c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"
+								/>
+							</g>
 						</svg>
 					</a>
 				</div>

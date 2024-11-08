@@ -1,13 +1,15 @@
 <script lang="ts">
     import { fade, fly } from 'svelte/transition';
     import { onMount } from 'svelte';
+	import { getArticles } from '$lib/pocketbase';
+	import type { Post } from '$lib/types/post';
     
     export let isOpen: boolean;
     export let onClose: () => void;
     
     interface SearchResult {
       title: string;
-      description: string;
+      expand: { author: { name: string } };
       slug: string;
       category: string;
     }
@@ -33,9 +35,9 @@
       isLoading = true;
       try {
         // Replace with actual API endpoint
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-        const data = await response.json();
-        searchResults = data.results;
+        let posts: Post[] = await getArticles({ filter: `title~"${query}"` });
+        console.log(posts);
+        searchResults = posts;
       } catch (error) {
         console.error('Search error:', error);
         searchResults = [];
@@ -145,7 +147,7 @@
                           </span>
                         </span>
                         <h3 class="mt-2 font-medium text-gray-900">{result.title}</h3>
-                        <p class="mt-1 text-sm text-gray-500">{result.description}</p>
+                        <p class="mt-1 text-sm text-gray-500">{result.expand?.author?.name}</p>
                       </a>
                     {/each}
                   </div>

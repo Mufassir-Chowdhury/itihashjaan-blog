@@ -1,15 +1,14 @@
-// src/lib/pocketbase.js
 import PocketBase, { type RecordListOptions } from 'pocketbase';
 import type { Post } from './types/post';
 import type { Author } from './types/author';
 
-let BASEPATH = 'http://127.0.0.1:8090';
-// Initialize PocketBase
-export const pb = new PocketBase(BASEPATH); // e.g., 'http://127.0.0.1:8090'
+// let BASEPATH = 'http://127.0.0.1:8090';
+let BASEPATH = 'https://itihashjaan-blog.pockethost.io';
+export const pb = new PocketBase(BASEPATH); 
 
-export const articleImage = "http://127.0.0.1:8090/api/files/articles";
-export const authorImage = "http://127.0.0.1:8090/api/files/authors";
-// Utility functions for data fetching
+export const articleImage = `${BASEPATH}/api/files/articles`;
+export const authorImage = `${BASEPATH}/api/files/authors`;
+
 export async function getArticles(options: RecordListOptions = {}): Promise<Post[]> {
     try {
         const defaultOptions: RecordListOptions = {
@@ -28,9 +27,6 @@ export async function getArticles(options: RecordListOptions = {}): Promise<Post
 
 export async function getArticleBySlug(slug: string): Promise<Post | null> {
     try {
-        // const record = await pb.collection('articles').getOne<Post>(id, {
-        //     expand: 'author'
-        // });
         const record = await pb.collection('articles').getFirstListItem<Post>(`slug="${slug}"`, {
             expand: 'author'
         });
@@ -41,6 +37,20 @@ export async function getArticleBySlug(slug: string): Promise<Post | null> {
         return emptyPost;
     }
 }
+
+export async function getArticlesByAuthor(id: string): Promise<Post[] | []> {
+    try {
+        const record = await pb.collection('articles').getFullList<Post>({
+            filter: `author="${id}"`,
+            expand: 'author'
+        });
+        return record;
+    } catch (err) {
+        console.error('Error fetching article:', err);
+        return [];
+    }
+}
+
 
 export async function getAuthors(options: RecordListOptions = {}): Promise<Author[]> {
     try {

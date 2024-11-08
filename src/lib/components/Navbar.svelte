@@ -58,12 +58,7 @@
 		}, 300);
 	};
 
-  let categories = [
-    { name: 'অনুবাদ', slug: 'translation' },
-    { name: 'প্রবন্ধ', slug: 'article' },
-    { name: 'অনুলিখন', slug: 'copywriting' },
-    { name: 'সম্পাদকীয়', slug: 'editorial' },
-  ]
+  export let categories;
 
 </script>
 

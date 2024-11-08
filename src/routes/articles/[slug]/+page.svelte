@@ -3,8 +3,16 @@
     import { fade } from 'svelte/transition';
     let { data } = $props();
     let post = data.props.post;
+    let categories = data.categories;
+    const url = window.location.href;
   </script>
-    
+    <svelte:head>
+      <meta property="og:url"           content={window.location.href}/>
+      <meta property="og:type"          content="website" />
+      <meta property="og:title"         content="ইতিহাসযান" />
+      <meta property="og:description"   content={post?.title} />
+      <meta property="og:image"         content="{articleImage}/{post?.id}/{post?.image}" />
+  </svelte:head>
   {#if post}
     <main class="min-h-screen bg-amber-50/30">
       <!-- Hero Section -->
@@ -19,9 +27,11 @@
         <div class="absolute bottom-0 left-0 right-0 px-4 pb-16 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl">
             <div class="mb-6 flex flex-wrap gap-3">
-              <span class="inline-block rounded-full bg-orange-500/80 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
-                {post.category}
-              </span>
+              <a href="/articles?category={categories.find((category: any) => category.name == post.category)?.slug}">
+                <span class="inline-block rounded-full bg-orange-500/80 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
+                  {post.category}
+                </span>
+              </a>
             </div>
             
             <h1 class="mb-4 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl" in:fade>
@@ -86,6 +96,9 @@
             >
               টুইটার
             </button>
+            
+
+
           </div>
         </div>
       </div>

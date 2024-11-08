@@ -4,15 +4,16 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '../app.css';
-	let { children } = $props();
+	let { children, data } = $props();
+	let categories = data.categories;
 </script>
 
 <ParaglideJS {i18n}>
 	<div class="flex min-h-screen flex-col">
-		<Navbar />
+		<Navbar {categories}/>
 		<main class="flex-1 pt-16">
 		  {@render children()}
 		</main>
-		<Footer />
+		<Footer {categories}/>
 	  </div>
 </ParaglideJS>
