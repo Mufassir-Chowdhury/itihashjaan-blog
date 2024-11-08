@@ -26,9 +26,12 @@ export async function getArticles(options: RecordListOptions = {}): Promise<Post
     }
 }
 
-export async function getArticleById(id: string): Promise<Post | null> {
+export async function getArticleBySlug(slug: string): Promise<Post | null> {
     try {
-        const record = await pb.collection('articles').getOne<Post>(id, {
+        // const record = await pb.collection('articles').getOne<Post>(id, {
+        //     expand: 'author'
+        // });
+        const record = await pb.collection('articles').getFirstListItem<Post>(`slug="${slug}"`, {
             expand: 'author'
         });
         return record;

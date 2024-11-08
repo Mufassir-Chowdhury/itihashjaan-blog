@@ -8,7 +8,7 @@
     
   </script>
   
-  <a href="/article/{post.id}" class="group block h-full">
+  <a href="/article/{post.slug}" class="group block h-full">
     <article class="relative overflow-hidden rounded-lg border border-amber-100 bg-black shadow-sm transition-all duration-200 hover:shadow-md h-full">
       <div class="aspect-video {featured ? 'aspect-[16/9]' : 'aspect-[16/9]'} w-full overflow-hidden">
         <img

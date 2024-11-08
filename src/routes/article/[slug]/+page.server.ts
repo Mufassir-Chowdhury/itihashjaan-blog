@@ -1,10 +1,10 @@
 // src/routes/+page.server.ts
 import type { PageServerLoad } from './$types';
 import type { Post } from '$lib/types/post';
-import { getArticleById } from '$lib/pocketbase';
+import { getArticleBySlug } from '$lib/pocketbase';
 
 export const load: PageServerLoad = async ({ params }) => {
-  const post: Post | null = await getArticleById(params.slug);
+  const post: Post | null = await getArticleBySlug(params.slug);
 
 
   return {
