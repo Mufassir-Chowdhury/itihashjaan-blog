@@ -6,7 +6,7 @@
 
     let selectedCategory: string | null = $state(null);
   
-    const categories = posts.map(post => post.category).filter((category, i, arr) => arr.indexOf(category) === i);
+    const categories = posts?.map(post => post.category).filter((category, i, arr) => arr.indexOf(category) === i);
   </script>
   
   <main class="min-h-screen bg-amber-50/30">
@@ -19,25 +19,28 @@
       </header>
   
       <!-- Filters -->
-      <div class="mb-8 flex flex-wrap justify-center gap-4">
+      {#if categories}
+        <div class="mb-8 flex flex-wrap justify-center gap-4">
 
-  
-        <div class="space-x-2">
-          {#each categories as category}
-            <button
-              class="rounded-full px-4 py-2 text-sm font-medium transition-colors
-              {selectedCategory === category ? 'bg-orange-600 text-white' : 'bg-orange-100 text-orange-800 hover:bg-orange-200'}"
-              onclick={() => selectedCategory = selectedCategory === category ? null : category}
-            >
-              {category}
-            </button>
-          {/each}
+    
+          <div class="space-x-2">
+            {#each categories as category}
+              <button
+                class="rounded-full px-4 py-2 text-sm font-medium transition-colors
+                {selectedCategory === category ? 'bg-orange-600 text-white' : 'bg-orange-100 text-orange-800 hover:bg-orange-200'}"
+                onclick={() => selectedCategory = selectedCategory === category ? null : category}
+              >
+                {category}
+              </button>
+            {/each}
+          </div>
         </div>
-      </div>
-      
-      <BlogGrid 
-        {posts}
-        {selectedCategory} 
-    />
+      {/if}
+      {#if posts}
+        <BlogGrid 
+          {posts}
+          {selectedCategory} 
+        />
+      {/if}
     </div>
   </main>
