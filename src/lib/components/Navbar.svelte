@@ -58,8 +58,7 @@
 		}, 300);
 	};
 
-  export let categories;
-
+	export let categories;
 </script>
 
 <nav
@@ -91,7 +90,13 @@
 						</a>
 
 						<!-- Dropdown -->
-						<div class="relative" on:mouseenter={handleMouseEnter} on:mouseleave={handleMouseLeave}>
+						<div
+							class="relative"
+							role="menu"
+							tabindex="0"
+							on:mouseenter={handleMouseEnter}
+							on:mouseleave={handleMouseLeave}
+						>
 							<button
 								class="group flex items-center space-x-1 text-gray-700 transition-colors hover:text-amber-600"
 								class:text-amber-600={isDropdownOpen}
@@ -118,14 +123,14 @@
 									class="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5"
 									transition:slide={{ duration: 200 }}
 								>
-                  {#each categories as category}
-                    <a
-                      href={`/articles?category=${category.slug}`}
-                      class="block px-4 py-2 text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600"
-                    >
-                      {category.name}
-                    </a>
-                  {/each}
+									{#each categories as category}
+										<a
+											href={`/articles?category=${category.slug}`}
+											class="block px-4 py-2 text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600"
+										>
+											{category.name}
+										</a>
+									{/each}
 								</div>
 							{/if}
 						</div>
@@ -161,6 +166,7 @@
 				<!-- Mobile menu button -->
 				<div class="flex md:hidden">
 					<button
+						aria-label="menu"
 						class="rounded-md p-2 text-gray-700 hover:bg-amber-50 hover:text-amber-600"
 						on:click={() => (isSearchOpen = true)}
 					>
@@ -215,18 +221,17 @@
 					<!-- Mobile Categories -->
 					<div class="space-y-1">
 						<div class="px-3 py-2 text-sm font-medium text-gray-500">বিভাগ সমূহ</div>
-            {#each categories as category}
-              <a
-                href={`/articles?category=${category.slug}`}
-                class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600"
-                on:click={() => (isMenuOpen = false)}
-              >
-                {category.name}
-              </a>
-            {/each}
-						
+						{#each categories as category}
+							<a
+								href={`/articles?category=${category.slug}`}
+								class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600"
+								on:click={() => (isMenuOpen = false)}
+							>
+								{category.name}
+							</a>
+						{/each}
 					</div>
-          <a
+					<a
 						href="/authors"
 						class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-amber-50 hover:text-amber-600"
 						class:bg-amber-50={$page.url.pathname === '/authors'}

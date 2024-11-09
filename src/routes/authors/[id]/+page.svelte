@@ -1,6 +1,8 @@
 <script>
 	import { articleImage, authorImage } from '$lib/pocketbase';
 	import { fade } from 'svelte/transition';
+	import DOMPurify from 'dompurify';
+
 	let { data } = $props();
 	let author = data.props.author;
 	let posts = data.props.posts;
@@ -25,7 +27,7 @@
 					</div>
 					<div class="p-8 md:w-2/3">
 						<h1 class="mb-4 text-4xl font-bold text-gray-900">{author.name}</h1>
-						<p class="mb-6 text-xl text-gray-600">{@html author.bio}</p>
+						<p class="mb-6 text-xl text-gray-600">{@html DOMPurify.sanitize(author.bio)}</p>
 						<!-- <p class="text-gray-600 mb-4">
                   <strong>শিক্ষা:</strong> {author.education}
                 </p> -->
@@ -101,10 +103,10 @@
 						</a>
 					{/each}
 				</div>
-            {:else}
-                <div class="flex min-h-screen items-center justify-center">
-                    <p class="text-2xl font-semibold text-gray-600">কোনো নিবন্ধ পাওয়া যায়নি</p>
-                </div>
+			{:else}
+				<div class="flex min-h-screen items-center justify-center">
+					<p class="text-2xl font-semibold text-gray-600">কোনো নিবন্ধ পাওয়া যায়নি</p>
+				</div>
 			{/if}
 		</div>
 	</div>

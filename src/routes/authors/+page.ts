@@ -4,11 +4,11 @@ import { getAuthors } from '$lib/pocketbase';
 import type { Author } from '$lib/types/author';
 
 export const load: PageLoad = async () => {
-  let authors: Author[] = await getAuthors();
+	const authors: Author[] = await getAuthors();
 
-  return {
-    props: {
-      authors: authors satisfies Author[]
-    }
-  };
-}
+	return {
+		props: {
+			authors: authors satisfies Author[]
+		}
+	};
+};
