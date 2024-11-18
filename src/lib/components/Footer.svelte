@@ -8,7 +8,7 @@
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Brand -->
 			<div class="mb-8 md:mb-0">
-				<h2 class="text-2xl font-bold text-amber-500">ইতিহাসযান</h2>
+				<h2 class="text-2xl font-bold text-amber-500">ইতিহাসযান-ব্লগ</h2>
 				<p class="mt-4 text-sm">সত্ত্বা, বর্তমানতা ও ইতিহাস</p>
 			</div>
 

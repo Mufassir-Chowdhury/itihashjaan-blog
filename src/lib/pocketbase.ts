@@ -14,7 +14,7 @@ export async function getArticles(options: RecordListOptions = {}): Promise<Post
 		const defaultOptions: RecordListOptions = {
 			sort: '+created',
 			expand: 'author',
-			fields: 'id,title,slug,category,created,author,description,date,image,featured',
+			fields: 'id,title,slug,category,created,author,description,date,image,featured,expand',
 			...options
 		};
 
@@ -44,7 +44,7 @@ export async function getArticlesByAuthor(id: string): Promise<Post[] | []> {
 		const record = await pb.collection('articles').getFullList<Post>({
 			filter: `author="${id}"`,
 			expand: 'author',
-			fields: 'id,title,slug,category,created,author,description,date,image'
+			fields: 'id,title,slug,category,created,author,description,date,image,expand'
 		});
 		return record;
 	} catch (err) {
@@ -85,7 +85,7 @@ export async function getPostSuggestions(currentPost: Post, limit = 3): Promise<
 			filter: `category = "${currentPost.category}" && id != "${currentPost.id}"`,
 			sort: '-created',
 			expand: 'author',
-			fields: 'id,title,slug,category,created,author,description,date,image'
+			fields: 'id,title,slug,category,created,author,description,date,image,expand'
 		});
 
 		// If we don't have enough suggestions from the same category, get recent posts
@@ -95,7 +95,7 @@ export async function getPostSuggestions(currentPost: Post, limit = 3): Promise<
 				filter: `id != "${currentPost.id} && "${suggestions.items.map((post) => post.id).join(',')}"!~id"`,
 				sort: '-created',
 				expand: 'author',
-				fields: 'id,title,slug,category,created,author,description,date,image'
+				fields: 'id,title,slug,category,created,author,description,date,image,expand'
 			});
 
 			suggestions.items = [...suggestions.items, ...recentPosts.items];

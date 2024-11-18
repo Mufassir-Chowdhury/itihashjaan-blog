@@ -1,13 +1,8 @@
 import type { PageLoad } from './$types';
+import { categories } from '$lib/categories';
 
+export const ssr = false;
 export const load: PageLoad = async () => {
-	const categories = [
-		{ name: 'অনুবাদ', slug: 'translation' },
-		{ name: 'প্রবন্ধ', slug: 'article' },
-		{ name: 'অনুলিখন', slug: 'copywriting' },
-		{ name: 'সম্পাদকীয়', slug: 'editorial' }
-	];
-
 	return {
 		categories: categories satisfies { name: string; slug: string }[]
 	};

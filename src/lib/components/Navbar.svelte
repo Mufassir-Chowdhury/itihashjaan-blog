@@ -72,7 +72,7 @@
 			<div class="flex h-16 items-center justify-between">
 				<!-- Logo -->
 				<a href="/" class="flex items-center space-x-2 transition-transform hover:scale-105">
-					<span class="text-2xl font-bold text-amber-600">ইতিহাসযান</span>
+					<span class="text-2xl font-bold text-amber-600">ইতিহাসযান-ব্লগ</span>
 				</a>
 
 				<!-- Desktop Navigation -->
@@ -139,14 +139,14 @@
 							class="group relative text-gray-700 transition-colors"
 							class:text-amber-600={$page.url.pathname === '/author'}
 						>
-							লেখকসমূহ
+							লেখকবৃন্দ
 							<span
 								class="absolute bottom-0 left-0 h-0.5 w-0 bg-amber-600 transition-all duration-300 group-hover:w-full"
 							></span>
 						</a>
 						<!-- Search Button -->
 						<button
-							class="group flex items-center space-x-2 rounded-full bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-amber-100"
+							class="group border border-amber-500 flex items-center space-x-2 rounded-full bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-amber-100"
 							on:click={() => (isSearchOpen = true)}
 						>
 							<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,7 +158,7 @@
 								/>
 							</svg>
 							<span class="text-sm">অনুসন্ধান</span>
-							<span class="text-xs text-gray-400">(Ctrl + K)</span>
+							<span class="text-xs text-gray-400 w-24"></span>
 						</button>
 					</div>
 				</div>
@@ -237,7 +237,7 @@
 						class:bg-amber-50={$page.url.pathname === '/authors'}
 						on:click={() => (isMenuOpen = false)}
 					>
-						লেখকসমূহ
+						লেখকবৃন্দ
 					</a>
 				</div>
 			</div>

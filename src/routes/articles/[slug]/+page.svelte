@@ -6,9 +6,36 @@
 
 	let { data } = $props();
 	let post = data.props.post;
-	let suggestions = data.props.suggestions;
 	let categories = data.categories;
 	// const url = $derived(window?.location.href);
+
+	import { onMount } from 'svelte';
+    let progress = $state(0);
+
+    onMount(() => {
+        const updateProgress = () => {
+            const article = document.querySelector('article');
+            if (!article) return;
+
+            const windowHeight = window.innerHeight;
+            const articleTop = article.offsetTop;
+            const articleHeight = article.offsetHeight;
+            const scrollY = window.scrollY;
+
+            // Calculate progress percentage
+            const totalDistance = articleHeight + articleTop - windowHeight;
+            progress = Math.min(100, Math.max(0, (scrollY / totalDistance) * 100));
+        };
+
+        // Add scroll event listener
+        window.addEventListener('scroll', updateProgress);
+        // Initial calculation
+        updateProgress();
+
+        return () => {
+            window.removeEventListener('scroll', updateProgress);
+        };
+    });
 </script>
 
 <svelte:head>
@@ -20,12 +47,19 @@
 </svelte:head>
 {#if post}
 	<main class="min-h-screen bg-amber-50/30">
+		<div class="fixed top-0 left-0 z-50 w-full">
+			<div 
+				class="h-1 bg-amber-500 transition-all duration-150" 
+				style="width: {progress}%"
+			></div>
+		</div>
 		<!-- Hero Section -->
 		<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
 			<img
 				src="{articleImage}/{post.id}/{post.image}"
 				alt={post.title}
 				class="h-full w-full object-cover"
+				loading="lazy"
 			/>
 			<div
 				class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"
@@ -89,7 +123,7 @@
 
 		<!-- Article Content -->
 		<article
-			class="mx-auto max-w-3xl divide-y-2 px-4 py-12 sm:px-6 lg:px-8"
+			class="mx-auto bg-white bg-opacity-45 max-w-3xl divide-y-2 px-4 py-12 sm:px-6 lg:px-8"
 			in:fade={{ delay: 200 }}
 		>
 			<!-- Description -->
@@ -138,7 +172,11 @@
 				</div>
 			</div>
 		</div>
-		<PostSuggestions {suggestions} />
+		{#await data.props.suggestions then suggestions}
+			<PostSuggestions {suggestions} />
+		{:catch error}
+			<p class="text-2xl font-semibold text-gray-600">কোনো নিবন্ধ পাওয়া যায়নি</p>
+		{/await}
 	</main>
 {:else}
 	<div class="flex min-h-screen items-center justify-center">
