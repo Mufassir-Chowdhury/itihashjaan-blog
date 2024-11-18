@@ -52,10 +52,10 @@
 
 	const handleMouseLeave = () => {
 		setTimeout(() => {
-			if (Date.now() - lastHoverTime >= 200) {
+			if (Date.now() - lastHoverTime >= 500) {
 				isDropdownOpen = false;
 			}
-		}, 300);
+		}, 600);
 	};
 
 	export let categories;
@@ -72,7 +72,7 @@
 			<div class="flex h-16 items-center justify-between">
 				<!-- Logo -->
 				<a href="/" class="flex items-center space-x-2 transition-transform hover:scale-105">
-					<span class="text-2xl font-bold text-amber-600">ইতিহাসযান-ব্লগ</span>
+					<span class="text-2xl font-bold text-emerald-700">ইতিহাসযান-ব্লগ</span>
 				</a>
 
 				<!-- Desktop Navigation -->
