@@ -8,11 +8,12 @@
 	let post = data.props.post;
 	let categories = data.categories;
 	// const url = $derived(window?.location.href);
-
+	let url = '';
 	import { onMount } from 'svelte';
     let progress = $state(0);
 
     onMount(() => {
+		url = window.location.href;
         const updateProgress = () => {
             const article = document.querySelector('article');
             if (!article) return;
@@ -36,14 +37,32 @@
             window.removeEventListener('scroll', updateProgress);
         };
     });
+	let imageUrl = $derived(`${window.location.origin}${articleImage}/${post?.id}/${post?.image}`);
 </script>
 
+
 <svelte:head>
-	<!-- <meta property="og:url"           content={url}/> -->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="ইতিহাসযান" />
-	<meta property="og:description" content={post?.title} />
-	<meta property="og:image" content="{articleImage}/{post?.id}/{post?.image}" />
+    <!-- Essential Open Graph Tags -->
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={post?.title || 'ইতিহাসযান'} />
+    <meta property="og:description" content={post?.description || post?.title} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Additional useful tags -->
+    <meta property="og:site_name" content="ইতিহাসযান" />
+    <meta property="og:locale" content="bn_BD" />
+    
+    <!-- WhatsApp specific tags -->
+    <meta property="og:image:alt" content={post?.title} />
+    
+    <!-- Twitter Card tags for broader compatibility -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={post?.title || 'ইতিহাসযান'} />
+    <meta name="twitter:description" content={post?.description || post?.title} />
+    <meta name="twitter:image" content={imageUrl} />
 </svelte:head>
 {#if post}
 	<main class="min-h-screen bg-amber-50/30">
